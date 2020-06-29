@@ -8,11 +8,16 @@ import {
 } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
 import './App.css';
+import { connectSearchBox } from 'react-instantsearch-dom';
+import SearchBoxC from './components/SearchBoxC';
+
 
 const searchClient = algoliasearch(
   'X7YEC7PC5R',
   '0dc7b12bb6c95839607db7255ad59503'
 );
+
+const CustomSearchBox = connectSearchBox(SearchBoxC);
 
 class App extends Component {
   render() {
@@ -21,7 +26,8 @@ class App extends Component {
         <h1>React InstantSearch for US representative demo</h1>
         <InstantSearch indexName="USgov" searchClient={searchClient}>
           <div className="right-panel">
-            <SearchBox className="search-main"/>
+            <CustomSearchBox
+           className="search-main"/>
             <Hits hitComponent={Hit} />
           </div>
         </InstantSearch>
