@@ -33,7 +33,7 @@ class App extends Component {
 }
 
 function Hit(props) {
-  console.log(props);
+  console.log(props.hit.person);
   return (
     <article>
       <h1>
@@ -41,7 +41,9 @@ function Hit(props) {
       </h1>
       <div>
         <Highlight attribute="person.name" hit={props.hit} />
-        <Highlight attribute="person.gender" hit={props.hit}/>
+      </div>
+      <div>
+        <Highlight attribute="twitterid" hit={props.hit.person}/>
       </div>
       <div className="links">
         <a href={props.hit.person.link}>
