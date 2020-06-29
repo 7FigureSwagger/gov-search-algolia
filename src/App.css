@@ -1,6 +1,13 @@
 body { font-family: sans-serif; padding: 1em; }
-.UScongress-InstantSearch { margin: 1em 0; }
+
+
+.UScongress-InstantSearch { margin: 1em 0; background-color: #5f42ad; }
 
 .links {
   font-size: xx-small !important;
+}
+
+.search-main {
+  margin-bottom: 1em;
+  color: #4250ad;
 }

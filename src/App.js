@@ -4,9 +4,7 @@ import {
   InstantSearch,
   Hits,
   SearchBox,
-  Pagination,
   Highlight,
-  Menu,
 } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
 import './App.css';
@@ -20,10 +18,10 @@ class App extends Component {
   render() {
     return (
       <div className="UScongress-InstantSearch">
-        <h1>React InstantSearch for US congress demo</h1>
+        <h1>React InstantSearch for US representative demo</h1>
         <InstantSearch indexName="USgov" searchClient={searchClient}>
           <div className="right-panel">
-            <SearchBox />
+            <SearchBox className="search-main"/>
             <Hits hitComponent={Hit} />
           </div>
         </InstantSearch>
@@ -37,13 +35,16 @@ function Hit(props) {
   return (
     <article>
       <h1>
-        <Highlight attribute="party" hit={props.hit} />
+        <Highlight attribute="person.name" hit={props.hit} />
       </h1>
       <div>
-        <Highlight attribute="person.name" hit={props.hit} />
+        <Highlight attribute="party" hit={props.hit} />
       </div>
       <div>
-        <Highlight attribute="twitterid" hit={props.hit.person}/>
+        {/* <Highlight attribute="person.name" hit={props.hit} /> */}
+      </div>
+      <div>
+        <Highlight attribute="state" hit={props.hit}/>
       </div>
       <div className="links">
         <a href={props.hit.person.link}>
