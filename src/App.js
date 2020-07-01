@@ -8,8 +8,6 @@ import {
 } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
 import './App.css';
-import { connectSearchBox } from 'react-instantsearch-dom';
-import SearchBoxC from './components/SearchBoxC';
 
 
 const searchClient = algoliasearch(
@@ -17,17 +15,15 @@ const searchClient = algoliasearch(
   '0dc7b12bb6c95839607db7255ad59503'
 );
 
-const CustomSearchBox = connectSearchBox(SearchBoxC);
 
 class App extends Component {
   render() {
     return (
       <div className="UScongress-InstantSearch">
-        <h1>React InstantSearch for US representative demo</h1>
+        <h1>Instant Search for US representative demo</h1>
         <InstantSearch indexName="USgov" searchClient={searchClient}>
           <div className="right-panel">
-            <CustomSearchBox
-           className="search-main"/>
+            <SearchBox className="search-main" />
             <Hits hitComponent={Hit} />
           </div>
         </InstantSearch>
@@ -47,15 +43,10 @@ function Hit(props) {
         <Highlight attribute="party" hit={props.hit} />
       </div>
       <div>
-        {/* <Highlight attribute="person.name" hit={props.hit} /> */}
-      </div>
-      <div>
-        <Highlight attribute="state" hit={props.hit}/>
+        <Highlight attribute="state" hit={props.hit} />
       </div>
       <div className="links">
-        <a href={props.hit.person.link}>
-          link
-        </a>
+        <a href={props.hit.person.link}>link</a>
       </div>
     </article>
   );
