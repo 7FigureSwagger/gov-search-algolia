@@ -5,29 +5,38 @@ import {
   Hits,
   SearchBox,
   Highlight,
+  RefinementList,
+  Menu,
+  Panel,
 } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
 import './App.css';
-
 
 const searchClient = algoliasearch(
   'X7YEC7PC5R',
   '0dc7b12bb6c95839607db7255ad59503'
 );
 
-
 class App extends Component {
   render() {
     return (
+      <InstantSearch indexName="USgov" searchClient={searchClient}>
       <div className="UScongress-InstantSearch">
-        <h1>Instant Search for US representative demo</h1>
-        <InstantSearch indexName="USgov" searchClient={searchClient}>
-          <div className="right-panel">
-            <SearchBox className="search-main" />
+        <h1>Instant Search for US representative *demo*</h1>
+        <div className="content">
+          <div className="left-panel">
+            <Panel header="Filters">
+              <RefinementList attribute="party" defaultRefinement={["Democrat"]}/>
+            </Panel>
+          </div>
+
+        </div>
+          <div>
+            <SearchBox className="search-main" translations={{placeholder : "Search Representatives"}}  />
             <Hits hitComponent={Hit} />
           </div>
-        </InstantSearch>
       </div>
+        </InstantSearch>
     );
   }
 }
@@ -46,7 +55,9 @@ function Hit(props) {
         <Highlight attribute="state" hit={props.hit} />
       </div>
       <div className="links">
-        <a href={props.hit.person.link}>link</a>
+        <a href={props.hit.person.link} target="_blank" rel="noopener noreferrer">
+          link
+        </a>
       </div>
     </article>
   );
