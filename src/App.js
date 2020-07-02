@@ -26,7 +26,7 @@ class App extends Component {
         <div className="content">
           <div className="left-panel">
             <Panel header="Filters">
-              <RefinementList attribute="party" defaultRefinement={["Democrat"]}/>
+              <RefinementList attribute="party"/>
             </Panel>
           </div>
 
